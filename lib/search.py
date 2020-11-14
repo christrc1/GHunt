@@ -19,10 +19,12 @@ def search(query, data_path, gdocs_public_doc, size=1000):
     output = json.loads(req.text.replace(")]}'", ""))
 
     results = []
-    for result in output[0][1]:
-        link = result[0][0]
-        title = result[0][1]
-        desc = result[0][2]
-        results.append({"title": title, "desc": desc, "link": link})
-
+    try:
+        for result in output[0][1]:
+            link = result[0][0]
+            title = result[0][1]
+            desc = result[0][2]
+            results.append({"title": title, "desc": desc, "link": link})
+    except:
+        pass
     return results
